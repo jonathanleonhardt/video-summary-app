@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'expo-router';
 import ButtonComponent from 'components/button-component'
 import TextInputComponent from 'components/textinput-component'
 import { Paragraph, YStack } from 'tamagui'
@@ -7,18 +8,21 @@ import axios from 'axios';
 export default function TabOneScreen() {
   const [videoUrl, setVideoUrl] = useState('');
   const [hint, setHint] = useState('');
+  const router = useRouter();
 
   const handleClick = async () => {
-    console.log('Button clicked!');
-    console.log('TextArea 1:', videoUrl);
-    console.log('TextArea 2:', hint);
-    const data = {
-      videoUrl: videoUrl,
-      hint: hint
-    };
     try {
-      const response = await axios.post('http://localhost:3000/api/generate-summary', data);
-      console.log('Response:', response.data);
+      const data = {
+        videoUrl: videoUrl,
+        hint: hint
+      };
+      const response = await axios.post( 'http://localhost:3000/api/generate-summary', data );
+      const AISummary = response.data;
+      console.log('Response:', AISummary);
+      router.push({
+        pathname: '/ai-summary',
+        params: AISummary,
+      });
     } catch (error) {
       console.error('Error:', error);
     }

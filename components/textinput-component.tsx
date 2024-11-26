@@ -1,19 +1,19 @@
 
 import { Text, TextArea } from 'tamagui'
 
-export default function TestInputComponent(props: any) {
+export default function TextInputComponent(props: any) {
 	return (
 		<>
 			<Text
 				alignSelf="flex-start"
-				ml={28}
+				ml={30}
 				mt={props.titleMarginTop}
 				fontSize={18}
 			>
 				{props.title}
 			</Text>
 			<TextArea
-				size='$12'
+				size='$14'
 				height={props.textAreaHeight}
 				borderRadius={20}
 				borderWidth={2}
