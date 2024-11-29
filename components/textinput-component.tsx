@@ -13,7 +13,7 @@ export default function TextInputComponent(props: any) {
 				{props.title}
 			</Text>
 			<TextArea
-				size='$14'
+				size="$14"
 				height={props.textAreaHeight}
 				borderRadius={20}
 				borderWidth={2}
@@ -22,6 +22,7 @@ export default function TextInputComponent(props: any) {
 				fontSize={12}
 				lineHeight={14}
 				value={props.value}
+				placeholder={props.examples}
 				onChangeText={(text) => props.onChange(text)}
 			/>
 		</>

@@ -16,7 +16,7 @@ export default function TabOneScreen() {
         videoUrl: videoUrl,
         hint: hint
       };
-      const response = await axios.post( 'http://localhost:3000/api/generate-summary', data );
+      const response = await axios.post('http://localhost:3000/api/generate-summary', data);
       const AISummary = response.data;
       console.log('Response:', AISummary);
       router.push({
@@ -43,7 +43,7 @@ export default function TabOneScreen() {
         value={hint}
         onChange={(value) => setHint(value)}
         title="Give us a hint:" />
-      <ButtonComponent title="Convert" btColor="$orange9" func={handleClick}/>
+      <ButtonComponent title="Convert" btColor="$orange9" func={handleClick} />
     </YStack>
   )
 }

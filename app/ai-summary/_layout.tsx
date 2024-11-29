@@ -1,41 +1,86 @@
-
+import { useState } from 'react';
+import { useRouter } from 'expo-router';
 import { useLocalSearchParams } from 'expo-router';
-import { Text, TextArea, YStack } from 'tamagui'
+import { Text, XStack, YStack, ScrollView } from 'tamagui';
+import TextInputComponent from 'components/textinput-component';
+import ButtonComponent from 'components/button-component';
+import { Laugh, Frown } from '@tamagui/lucide-icons'
+
 
 export default function AIResponse() {
-	const { summary } = useLocalSearchParams(); // Recupera o parâmetro 'summary'
+	const [question, setQuestion] = useState('');
+	const router = useRouter();
+
+	const { summary } = useLocalSearchParams();
+
+	const handleClick = async () => {
+		try {
+			router.push("/(tabs)");
+		} catch (error) {
+			console.error('Error:', error);
+		}
+	};
 
 	return (
-		<YStack ai="center" gap="$2" px="$4" pt="$4" bg="$background">
-			<Text
-				alignSelf="flex-start"
-				ml={30}
-				mt="$2"
-				fontSize={18}
-			>
-				AI SUMMARY
-			</Text>
-			<YStack backgroundColor="$gray8" borderRadius="$3">
-
+		<ScrollView>
+			<YStack ai="center" gap="$2" px="$4" pt="$4" pb="$10" bg="$background">
 				<Text
-					alignSelf="flex-start"
-					ml={30}
-					mt="$2"
+					alignSelf="center"
+					mt="$10"
+					mb="$2"
 					fontSize={18}
-				>
-					{summary}
+				>🤖📚👩🏽‍🎓</Text>
+				<Text
+					alignSelf="center"
+					mb="$4"
+					fontWeight="$16"
+					fontSize={20}>
+					AI VIDEO SUMMARY
 				</Text>
+				<YStack backgroundColor="$gray12" borderRadius="$6" mx='$3'>
+					<Text
+						alignSelf="flex-start"
+						mx={20}
+						my="$6"
+						px="$2"
+						fontSize={18}
+						color="black"
+					>
+						{summary}
+					</Text>
+				</YStack>
+				<TextInputComponent
+					titleMarginTop="$6"
+					textAreaHeight="$6"
+					value={question}
+					onChange={(value) => setQuestion(value)}
+					examples="How exactly this that?"
+					mb="$4"
+					title="Ask something else:" />
+				<XStack backgroundColor="$black4" flex={1} gap="$4" borderRadius="$6" borderColor="$white10" borderWidth="$1" mt="$8">
+					<YStack pl="$2">
+						<Text
+							// alignSelf="center"
+							// alignContent='center'
+							mx={10}
+							my="$4"
+							mb="$5"
+							px="$2"
+							fontSize={18}
+							color="white"
+						>
+							GIVE A FEEDBACK
+						</Text>
+					</YStack>
+					<YStack pt="$4" pr="$3">
+						<Laugh color="green" />
+					</YStack>
+					<YStack pt="$4" pr="$6">
+						<Frown color="red" />
+					</YStack>
+				</XStack>
+				<ButtonComponent pb="$4" title="Convert Next" btColor="$orange9" mt="$5" func={handleClick} />
 			</YStack>
-			{/* <TextArea
-				size='$12'
-				borderRadius={20}
-				borderWidth={2}
-				bg="$white7"
-				color="$black1"
-				fontSize={16}
-				lineHeight={20}
-				value={summary.toString()}
-			/> */}
-		</YStack>
+		</ScrollView>
 	);
 }

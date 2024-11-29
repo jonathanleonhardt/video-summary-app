@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router'
 import { useTheme } from 'tamagui'
-import { Atom, Settings } from '@tamagui/lucide-icons'
+import { Bot, FileClock } from '@tamagui/lucide-icons'
 
 export default function TabLayout() {
   const theme = useTheme()
@@ -29,14 +29,14 @@ export default function TabLayout() {
           title: '',
           headerShown: false,
           tabBarIcon:
-            ({ focused }) => <Atom size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
+            ({ focused }) => <Bot size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
           title: '',
-          tabBarIcon: ({ focused }) => <Settings size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
+          tabBarIcon: ({ focused }) => <FileClock size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
         }}
       />
     </Tabs>
