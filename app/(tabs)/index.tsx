@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'expo-router';
 import ButtonComponent from 'components/button-component'
 import TextInputComponent from 'components/textinput-component'
 import { Paragraph, YStack } from 'tamagui'
 import axios from 'axios';
+import saveToken from 'service/register-push-notification';
 
 export default function TabOneScreen() {
+  const [userId, setUserId] = useState('674b58c3694d0d9164f76a50');
   const [videoUrl, setVideoUrl] = useState('');
   const [hint, setHint] = useState('');
   const router = useRouter();
+
+  useEffect(() => {
+    saveToken(userId);
+  })
 
   const handleClick = async () => {
     try {

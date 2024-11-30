@@ -4,7 +4,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { Text, XStack, YStack, ScrollView } from 'tamagui';
 import TextInputComponent from 'components/textinput-component';
 import ButtonComponent from 'components/button-component';
-import { Laugh, Frown } from '@tamagui/lucide-icons'
+import { X, Laugh, Frown } from '@tamagui/lucide-icons'
 
 
 export default function AIResponse() {
@@ -49,19 +49,17 @@ export default function AIResponse() {
 						{summary}
 					</Text>
 				</YStack>
-				<TextInputComponent
+				{/* <TextInputComponent
 					titleMarginTop="$6"
 					textAreaHeight="$6"
 					value={question}
 					onChange={(value) => setQuestion(value)}
 					examples="How exactly this that?"
 					mb="$4"
-					title="Ask something else:" />
+					title="Ask something else:" /> */}
 				<XStack backgroundColor="$black4" flex={1} gap="$4" borderRadius="$6" borderColor="$white10" borderWidth="$1" mt="$8">
 					<YStack pl="$2">
 						<Text
-							// alignSelf="center"
-							// alignContent='center'
 							mx={10}
 							my="$4"
 							mb="$5"
