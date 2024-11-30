@@ -1,7 +1,25 @@
+import { useEffect, useState } from 'react'
 import { ChevronDown } from '@tamagui/lucide-icons'
 import { Text, View, Accordion, Paragraph, Square } from 'tamagui'
 
 export default function TabTwoScreen() {
+  const [userId, setUserId] = useState('674b58c3694d0d9164f76a50');
+  const [history, setHistory] = useState(null);
+
+  useEffect(() => {
+     // try {
+    //   const data = {
+    //     videoUrl: videoUrl,
+    //     hint: hint
+    //   };
+    //   const response = await axios.post('http://localhost:3000/api/generate-summary', data);
+    //   const AISummary = response.data;
+    //   console.log('Response:', AISummary);
+    // } catch (error) {
+    //   console.error('Error:', error);
+    // }
+  }, [userId])
+
   return (
     <View flex={1} alignItems="center" justifyContent="center" bg="$background">
       <Text fontSize={20} pb="$4">
