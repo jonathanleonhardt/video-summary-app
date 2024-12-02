@@ -1,5 +1,6 @@
 import '../tamagui-web.css'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import LoginComponent from 'components/auth-component';
 import { useEffect, useState } from 'react'
 import { StatusBar, useColorScheme } from 'react-native'
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native'
@@ -7,7 +8,8 @@ import { useFonts } from 'expo-font'
 import { SplashScreen, Stack } from 'expo-router'
 import { Provider } from './Provider'
 import WelcomeComponent from 'components/welcone-component';
-import axios from 'axios';
+import execute from 'service/start-timers';
+import { useRouter } from 'expo-router';
 
 export {
   ErrorBoundary,
@@ -45,10 +47,17 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 
 function RootLayoutNav() {
   const [isFirstLaunch, setIsFirstLaunch] = useState(true);
+  const [isLoggedIn, setILoggedIn] = useState(false);
   const colorScheme = useColorScheme()
+  const router = useRouter();
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/start-timers');
+    try {
+      execute();
+      if (!isLoggedIn) {
+        router.push('/auth/login');
+      }
+    } catch (error) { }
   });
 
   return (

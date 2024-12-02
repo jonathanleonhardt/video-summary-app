@@ -5,16 +5,18 @@ import TextInputComponent from 'components/textinput-component'
 import { Paragraph, YStack } from 'tamagui'
 import axios from 'axios';
 import saveToken from 'service/register-push-notification';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function TabOneScreen() {
-  const [userId, setUserId] = useState('674b58c3694d0d9164f76a50');
+  // const [userId, setUserId] = useState('674b58c3694d0d9164f76a50');
   const [videoUrl, setVideoUrl] = useState('');
   const [hint, setHint] = useState('');
   const router = useRouter();
+  const { userId } = useLocalSearchParams();
 
   useEffect(() => {
-    saveToken(userId);
-  })
+    saveToken(userId.toString());
+  }, [])
 
   const handleClick = async () => {
     try {

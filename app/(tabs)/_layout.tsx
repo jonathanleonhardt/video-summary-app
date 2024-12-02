@@ -1,9 +1,12 @@
 import { Tabs } from 'expo-router'
 import { useTheme } from 'tamagui'
 import { Bot, FileClock } from '@tamagui/lucide-icons'
+import { useLocalSearchParams } from 'expo-router';
 
 export default function TabLayout() {
   const theme = useTheme()
+  // const userId = '674b58c3694d0d9164f76a50'
+  const { userId } = useLocalSearchParams();
 
   return (
     <Tabs
@@ -31,12 +34,18 @@ export default function TabLayout() {
           tabBarIcon:
             ({ focused }) => <Bot size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
         }}
+        initialParams={{
+          userId : userId,
+        }}
       />
       <Tabs.Screen
         name="two"
         options={{
           title: '',
           tabBarIcon: ({ focused }) => <FileClock size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
+        }}
+        initialParams={{
+          userId : userId,
         }}
       />
     </Tabs>

@@ -2,19 +2,28 @@ import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { useLocalSearchParams } from 'expo-router';
 import { Text, XStack, YStack, ScrollView } from 'tamagui';
-import TextInputComponent from 'components/textinput-component';
 import ButtonComponent from 'components/button-component';
 import { X, Laugh, Frown } from '@tamagui/lucide-icons'
-
+import axios from 'axios';
 
 export default function AIResponse() {
-	const [question, setQuestion] = useState('');
+	// const [question, setQuestion] = useState('');
 	const router = useRouter();
-
-	const { summary } = useLocalSearchParams();
+	const { summary, userId, videoURL, hint } = useLocalSearchParams();
+	const [history, setHistory] = useState({});
 
 	const handleClick = async () => {
 		try {
+			setHistory({
+				userId: userId,
+				videoURL: videoURL,
+				hint: hint,
+				question: '',
+				aiSummary: summary,
+				feedback: '',
+				feedbackDescription: '',
+			});
+			await axios.post('http://localhost:3000/api/user-history/create', history);
 			router.push("/(tabs)");
 		} catch (error) {
 			console.error('Error:', error);

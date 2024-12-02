@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ChevronDown } from '@tamagui/lucide-icons'
 import { Text, View, Accordion, Paragraph, Square } from 'tamagui'
 import axios from 'axios';
+import { useLocalSearchParams } from 'expo-router';
 
 interface UserHistory {
   createdAt: string;
@@ -9,7 +10,8 @@ interface UserHistory {
 }
 
 export default function TabTwoScreen() {
-  const [userId, setUserId] = useState('674b58c3694d0d9164f76a50');
+  // const [userId, setUserId] = useState('674b58c3694d0d9164f76a50');
+  const { userId } = useLocalSearchParams();
   const [history, setHistory] = useState<UserHistory[]>([]);
 
   const updateHistory = async (id) => {
@@ -32,7 +34,7 @@ export default function TabTwoScreen() {
     } catch (error) {
       console.error('Error:', error);
     }
-  }, [userId])
+  }, [])
 
   return (
     <View flex={1} alignItems="center" justifyContent="center" bg="$background">
@@ -42,7 +44,7 @@ export default function TabTwoScreen() {
       <Accordion overflow="hidden" width="$20" type="multiple">
         {history.map(item => (
           <>
-            <Accordion.Item value={item._id}>
+            <Accordion.Item key={item._id} value={item._id}>
               <Accordion.Trigger flexDirection="row" justifyContent="space-between">
                 {({ open }: { open: boolean }) => (
                   <>
@@ -56,13 +58,13 @@ export default function TabTwoScreen() {
               <Accordion.HeightAnimator animation="medium">
                 <Accordion.Content animation="medium" exitStyle={{ opacity: 0 }}>
                   <Paragraph>Date: {item.createdAt}</Paragraph>
-                  <br />
+                  <Paragraph/>
                   <Paragraph>Video URL: {item.videoURL}</Paragraph>
-                  <br />
+                  <Paragraph/>
                   <Paragraph>{item.hint ? 'Hint: ' + item.hint : ''}</Paragraph>
-                  <br />
+                  <Paragraph/>
                   <Paragraph>{item.aiSummary}</Paragraph>
-                  <br />
+                  <Paragraph/>
                   <Paragraph>{item.feedback ? 'GOOD' : 'BAD - ' + item.feedbackDescription}</Paragraph>
                 </Accordion.Content>
               </Accordion.HeightAnimator>
