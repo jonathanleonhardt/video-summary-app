@@ -67,7 +67,7 @@ function RootLayoutNav() {
         (
           <WelcomeComponent onFinish={() => setIsFirstLaunch(false)} />
         ) : (
-          <Stack>
+          <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen
               name="(tabs)"
               options={{

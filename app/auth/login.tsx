@@ -1,7 +1,10 @@
 import LoginComponent from "components/auth-component"
+import { Stack } from 'tamagui';
 
 export default function login() {
 	return (
-		<LoginComponent/>
+		<Stack f={1} >
+			<LoginComponent />
+		</Stack>
 	)
 }

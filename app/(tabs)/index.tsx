@@ -22,8 +22,9 @@ export default function TabOneScreen() {
     try {
       const data = {
         videoUrl: videoUrl,
-        hint: hint
+        userHint: hint
       };
+      console.log(data)
       const response = await axios.post('http://localhost:3000/api/generate-summary', data);
       const AISummary = response.data;
       console.log('Response:', AISummary);

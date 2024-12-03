@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router'
 import { useTheme } from 'tamagui'
-import { Bot, FileClock } from '@tamagui/lucide-icons'
+import { Bot, FileClock, Settings } from '@tamagui/lucide-icons'
 import { useLocalSearchParams } from 'expo-router';
 
 export default function TabLayout() {
@@ -39,10 +39,20 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="history"
         options={{
           title: '',
           tabBarIcon: ({ focused }) => <FileClock size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
+        }}
+        initialParams={{
+          userId : userId,
+        }}
+      />
+      <Tabs.Screen
+        name="setting"
+        options={{
+          title: '',
+          tabBarIcon: ({ focused }) => <Settings size={focused ? 40 : 28} color={focused ? "$orange9" : "$gray10"} />
         }}
         initialParams={{
           userId : userId,

@@ -10,7 +10,7 @@ export default function WelcomeComponent(props: any) {
 				<SizableText size="$9" pl="$6" color="$orange10Dark">but easier</SizableText>
 				<SizableText size="$9" pt="$2" pl="$10">🤖📚👩🏽‍🎓</SizableText>
 			</YStack>
-			<YStack f={1} ai="center" bg="$background">
+			<YStack f={1} ai="center" position="absolute" bottom={20} left={0} right={0} padding={20} alignItems="center" justifyContent="center" bg="$background">
 				<ButtonComponent title="Let's get started" btColor="$orange9" func={props.onFinish} />
 			</YStack>
 		</YStack>
