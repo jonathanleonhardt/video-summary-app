@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ChevronDown } from '@tamagui/lucide-icons'
-import { Text, View, Accordion, Paragraph, Square } from 'tamagui'
+import { Text, ScrollView, Accordion, Paragraph, Square } from 'tamagui'
 import axios from 'axios';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -15,7 +15,7 @@ export default function TabTwoScreen() {
   const [history, setHistory] = useState<UserHistory[]>([]);
 
   const updateHistory = async (id) => {
-    const response: { data: { userHistories: UserHistory[] } } = await axios.get('http://localhost:3000/api/user-history/' + id);
+    const response: { data: { userHistories: UserHistory[] } } = await axios.get('https://2a3c-201-76-113-98.ngrok-free.app/api/user-history/' + id);
     if (!response.data || response.data.userHistories.length === 0) {
       return
     }
@@ -37,7 +37,7 @@ export default function TabTwoScreen() {
   }, [])
 
   return (
-    <View flex={1} alignItems="center" justifyContent="center" bg="$background">
+    <ScrollView flex={1} alignItems="center" justifyContent="center" bg="$background">
       <Text fontSize={20} pb="$4">
         History
       </Text>
@@ -72,6 +72,6 @@ export default function TabTwoScreen() {
           </>
         ))}
       </Accordion>
-    </View>
+    </ScrollView>
   )
 }

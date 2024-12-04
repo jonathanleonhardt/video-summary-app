@@ -14,7 +14,7 @@ export default async function saveToken(userId: string) {
 			userId,
 			expoToken: token.data,
 		};
-		await axios.post('http://localhost:3000/api/register-token', data);
+		await axios.post('https://2a3c-201-76-113-98.ngrok-free.app/api/register-token', data);
 	} else {
 		alert('Este dispositivo não suporta notificações.');
 	}

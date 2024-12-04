@@ -9,7 +9,7 @@ import axios from 'axios';
 export default function AIResponse() {
 	// const [question, setQuestion] = useState('');
 	const router = useRouter();
-	const { summary, userId, videoURL, hint } = useLocalSearchParams();
+	const { summary, userId, videoURL, userHint } = useLocalSearchParams();
 	const [history, setHistory] = useState({});
 
 	const handleClick = async () => {
@@ -17,14 +17,18 @@ export default function AIResponse() {
 			setHistory({
 				userId: userId,
 				videoURL: videoURL,
-				hint: hint,
-				question: '',
+				hint: userHint? userHint : 'NOP',
+				question: 'NOP',
 				aiSummary: summary,
-				feedback: '',
-				feedbackDescription: '',
+				feedback: false,
+				feedbackDescription: 'NOP',
 			});
-			await axios.post('http://localhost:3000/api/user-history/create', history);
-			router.push("/(tabs)");
+			await axios.post('https://2a3c-201-76-113-98.ngrok-free.app/api/user-history/create', history);
+			router.push({
+				pathname: "/(tabs)", params: {
+					userId: userId,
+				}
+			});
 		} catch (error) {
 			console.error('Error:', error);
 		}

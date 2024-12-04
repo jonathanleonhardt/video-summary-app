@@ -15,7 +15,7 @@ export default function setting() {
 
 	const getUser = async (id) => {
 		try {
-			const response = await axios.get('http://localhost:3000/api/user/' + id);
+			const response = await axios.get('https://2a3c-201-76-113-98.ngrok-free.app/api/user/' + id);
 			if (!response.data) {
 				return;
 			}
